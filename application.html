@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Software | Aleen Grace</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="portfolio-detail.css">
+</head>
+<body class="portfolio-detail-page">
+
+   <header class="navbar">
+    <div class="logo">
+        <a href="index.html">
+                <img src="image/footer.png" alt="AG Logo">
+    </div>
+    <nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+            <a href="index.html#portfolio">Back to Portfolio</a>
+            <ul class="dropdown-content">
+                <li><a href="web-design.html">Web Design</a></li>
+                <li><a href="graphic-design.html">Graphic Design</a></li>
+                <li><a href="application.html">Application</a></li>
+            </ul>
+        </li>
+        <li><a href="index.html#contact" class="nav-cta">Let's Connect</a></li>
+    </ul>
+</nav>
+</header>
+
+    <section class="detail-header">
+        <p class="section-label">DEVELOPMENT</p>
+        <h1>Application Software</h1>
+        <p class="detail-intro">Visual Studio Code • Visual Studio</p>
+    </section>
+
+       <section class="gallery-container">
+
+        <div class="gallery-item">
+            <div class="gallery-image">
+                <img src="image/a2.png" alt="Project Two" class="main-preview">
+                <div class="project-images" style="display:none;">
+                    <img src="image/a1.png">
+                    <img src="image/a2.png">
+                    <img src="image/a3.png">
+                    <img src="image/a4.png">
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <h3>Drive and Go</h3>
+                        <p>Car Rental Service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gallery-item tall">
+            <div class="gallery-image">
+                <img src="image/journal1.jpg" alt="Project One" class="main-preview">
+                <div class="project-images" style="display:none;">
+                    <img src="image/journal1.jpg">
+                    <img src="image/journal2.jpg">
+                    <img src="image/journal3.jpg">
+                    <img src="image/journal4.jpg">
+                    <img src="image/journal5.jpg">
+                    <img src="image/journal6.jpg">
+                    
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <h3>Journal Phone Application</h3>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gallery-item tall">
+            <div class="gallery-image">
+                <img src="image/p2.jpg" alt="Project One" class="main-preview">
+                <div class="project-images" style="display:none;">
+                    <img src="image/p2.jpg">
+                    <img src="image/p3.jpg">
+                    <img src="image/p4.jpg">
+                    <img src="image/p5.jpg">
+                    <img src="image/p6.jpg">
+                    <img src="image/p7.jpg">
+                    
+                    
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <h3>IT Terms Dictionary</h3>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+
+        <div class="gallery-item">
+            <div class="gallery-image">
+                <img src="image/app (6).png" alt="Project Three" class="main-preview">
+                <div class="project-images" style="display:none;">
+                    <img src="image/app (6).png">
+                    <img src="image/app (1).png">
+                    <img src="image/app (2).png">
+                    <img src="image/app (3).png">
+                    <img src="image/app (4).png">
+                    <img src="image/app (5).png">
+                </div>
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <h3>CVSU Student Entry</h3>
+                        <p>Admin portal and Display view</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-btn">&times;</span>
+        <span class="nav-btn prev-btn">&#10094;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <span class="nav-btn next-btn">&#10095;</span>
+        <div id="caption"></div>
+    </div>
+
+    <footer class="footer-bottom">
+        <p>2026 Aleen Grace D. Deslate | Portfolio</p>
+    </footer>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const caption = document.getElementById('caption');
+        const closeBtn = document.querySelector('.close-btn');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+
+        let currentProjectImages = [];
+        let currentIndex = 0;
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                currentProjectImages = Array.from(item.querySelectorAll('.project-images img'));
+                
+                if (currentProjectImages.length === 0) {
+                    currentProjectImages = [item.querySelector('.main-preview')];
+                }
+
+                currentIndex = 0;
+                const title = item.querySelector('h3').innerText;
+                caption.innerText = title;
+                
+                updateLightbox();
+                lightbox.style.display = 'flex';
+            });
+        });
+
+        function updateLightbox() {
+            lightboxImg.src = currentProjectImages[currentIndex].src;
+            
+            if (currentProjectImages.length <= 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+            }
+        }
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentIndex = (currentIndex + 1) % currentProjectImages.length;
+            updateLightbox();
+        });
+
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentIndex = (currentIndex - 1 + currentProjectImages.length) % currentProjectImages.length;
+            updateLightbox();
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
