@@ -37,17 +37,62 @@ nav ul li a { text-decoration: none; color: #555; font-size: 0.85rem; letter-spa
 nav ul li a:hover { color: var(--primary); }
 
 .dropdown-content {
-    position: absolute; top: 100%; left: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
     background-color: rgba(26, 26, 26, 0.98);
-    min-width: 200px; padding: 8px 0; border-radius: 8px;
-    opacity: 0; visibility: hidden; transform: translateY(10px);
-    transition: all 0.3s ease;
+    min-width: 200px;
+    padding: 8px 0;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
 }
 
-.dropdown:hover .dropdown-content { opacity: 1; visibility: visible; transform: translateY(0); }
-.dropdown-content li { margin: 0; width: 100%; }
-.dropdown-content li a { padding: 12px 25px; color: #888; display: block; }
-.dropdown-content li a:hover { background: rgba(255,255,255,0.05); color: white; }
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-content li {
+    margin: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dropdown-content li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content li a {
+    padding: 12px 25px;
+    display: block;
+    width: 100%;
+    font-size: 0.8rem;
+    color: #888;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.dropdown-content li a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.dropdown > a::after {
+    content: ' ▾';
+    font-size: 0.7rem;
+    opacity: 0.5;
+    margin-left: 5px;
+}
 
 /* --- RESUME LAYOUT --- */
 #resume-section { padding: 140px 5% 80px; display: flex; justify-content: center; }
