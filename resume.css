@@ -13,7 +13,7 @@ body {
     background-color: #121212;
 }
 
-/* --- NAVBAR & DROPDOWN (Your Original Styles) --- */
+/* --- NAVBAR & DROPDOWN --- */
 .portfolio-detail-page .navbar {
     position: fixed; 
     top: 0;
@@ -164,3 +164,4 @@ nav ul li a:hover { color: var(--primary); }
     .exp-header { flex-direction: column; }
     .achievement-grid { grid-template-columns: 1fr; }
 }
+
